@@ -87,7 +87,8 @@ class SpongeWorld(Database):
         '''
         res = requests.get(self.dburl + '/' + api, json=rdata)
         if res.status_code != 200:
-            logger.warn('REST error %s enountered when accessing SpongeWorld %s: %s' % (res.reason, api, res.content))
+            logger.debug('REST error %s enountered when accessing SpongeWorld %s: %s' % (res.reason, api, res.content))
+            # logger.warn('REST error %s enountered when accessing SpongeWorld %s: %s' % (res.reason, api, res.content))
         return res
 
     def get_annotation_string(self, info, pval=0.1):
