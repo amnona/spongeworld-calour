@@ -117,6 +117,8 @@ class SpongeWorld(Database):
         '''
         keep = []
         total_observed = info['total_observed']
+        if total_observed == 0:
+            return []
         if total_observed is None:
             logger.debug('sequence %s not found in database')
             return []
@@ -164,7 +166,6 @@ class SpongeWorld(Database):
         if res.status_code != 200:
             return []
         info = res.json()
-        print(info)
         desc = self.get_annotation_string(info)
         return desc
 
@@ -190,6 +191,19 @@ class SpongeWorld(Database):
         shortdesc = []
         annotations = self.get_seq_annotations(sequence)
         for cann in annotations:
-            print(cann)
-            shortdesc.append(({'annotationtype': 'other'}, cann))
+            shortdesc.append(({'annotationtype': 'other', 'sequence': sequence}, cann))
         return shortdesc
+
+    def show_annotation_info(self, annotation):
+        '''Show the website for the sequence
+
+        Parameters
+        ----------
+        annotation : dict
+            should contain 'sequence'
+        '''
+        # open in a new tab, if possible
+        new = 2
+
+        address = '%s/search_results?sequence=%s' % (self.web_interface, annotation['sequence'])
+        webbrowser.open(address, new=new)
