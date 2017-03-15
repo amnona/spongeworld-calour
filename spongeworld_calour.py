@@ -13,7 +13,7 @@ logger = getLogger(__name__)
 
 
 class SpongeWorld(Database):
-    def __init__(self):
+    def __init__(self, exp=None):
         super().__init__(database_name='SpongeWorld', methods=['get'])
 
         # Web address of the bact server
@@ -161,6 +161,7 @@ class SpongeWorld(Database):
         sequence = sequence.upper()
         rdata = {}
         rdata['sequence'] = sequence
+        rdata['fields'] = ['host_scientific_name', 'env_feature', 'country']
         res = self._get('sequence/info', rdata=rdata)
         if res.status_code != 200:
             return []
