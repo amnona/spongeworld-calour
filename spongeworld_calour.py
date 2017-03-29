@@ -39,14 +39,14 @@ class SpongeWorld(Database):
                 server_address = 'http://127.0.0.1:5000'
             elif servertype == 'main':
                 logger.debug('servertype is main')
-                server_address = 'http://amnonim.webfactional.com/spongeworld/'
+                server_address = 'http://spongeemp.com'
             elif servertype == 'develop':
                 logger.debug('servertype is develop')
                 server_address = 'http://amnonim.webfactional.com/spongeworld_develop'
             else:
                 raise ValueError('unknown server type %s in SPONGEWORLD_SERVER_TYPE' % servertype)
         else:
-            server_address = 'http://amnonim.webfactional.com/spongeworld'
+            server_address = 'http://spongeemp.com'
             logger.debug('using default server main (use env. variable SPONGEWORLD_SERVER_TYPE to set)')
         return server_address
 
